@@ -16,7 +16,7 @@ class InvoiceServiceTest {
     void addShouldAddTheGivenInvoice() {
 
         InvoiceValidator validator = new InvoiceValidator();
-        FileRepository<Invoice> repository = new FileRepository<>(validator, "test1.json", Invoice.class);
+        FileRepository<Invoice> repository = new FileRepository<>(validator, "test1.json", Invoice[].class);
         InvoiceService service = new InvoiceService(repository);
 
         service.add("1", 200, "test", "20.04.2019");
@@ -31,7 +31,7 @@ class InvoiceServiceTest {
     @Test
     void getDaySumShouldComputeCorrectDailySums() {
         InvoiceValidator validator = new InvoiceValidator();
-        FileRepository<Invoice> repository = new FileRepository<>(validator, "test2.json", Invoice.class);
+        FileRepository<Invoice> repository = new FileRepository<>(validator, "test2.json", Invoice[].class);
         InvoiceService service = new InvoiceService(repository);
 
         service.add("1", 261, "test", "20.04.2019");

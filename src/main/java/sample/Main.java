@@ -12,6 +12,8 @@ import sample.Repository.FileRepository;
 import sample.Repository.IRepository;
 import sample.Service.InvoiceService;
 
+import java.util.List;
+
 public class Main extends Application {
 
     @Override
@@ -22,7 +24,7 @@ public class Main extends Application {
         Controller controller =  fxmlLoader.getController();
 
         IValidator<Invoice> invoiceValidator = new InvoiceValidator();
-        IRepository<Invoice> invoiceIRepository= new FileRepository<>(invoiceValidator, "invoices.json", Invoice.class);
+        IRepository<Invoice> invoiceIRepository= new FileRepository<>(invoiceValidator, "invoices.json", Invoice[].class);
 
         InvoiceService invoiceService = new InvoiceService(invoiceIRepository);
         invoiceService.add("1", 100, "1 2 3", "20.01.2019");

@@ -1,9 +1,1 @@
-[
-{"sum":543.0,"description":"trt","date":"14.04.3023","id":"66"},
-{"sum":100.0,"description":"1 2 3","date":"20.01.2019","id":"1"},
-{"sum":200.0,"description":"e e e","date":"21.02.2019","id":"2"},
-{"sum":300.0,"description":"c c c","date":"22.03.2019","id":"3"},
-{"sum":343.0,"description":"rewrwer","date":"23.04.2019","id":"5"},
-{"sum":21.0,"description":"dsfs","date":"20.01.2019","id":"6"},
-{"sum":343.0,"description":"kdff","date":"32.42.2019","id":"43"}
-]
+[{"sum":100.0,"description":"1 2 3","date":"20.01.2019","id":"1"},{"sum":200.0,"description":"e e e","date":"21.02.2019","id":"2"},{"sum":300.0,"description":"c c c","date":"22.03.2019","id":"3"},{"sum":423.0,"description":"re","date":"20.03.2012","id":"4"}]
