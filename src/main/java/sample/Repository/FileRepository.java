@@ -39,9 +39,15 @@ public class FileRepository<T extends Entity> implements IRepository<T> {
         try (FileReader in = new FileReader(filename)) {
             try (BufferedReader bufferedReader = new BufferedReader(in)) {
 //                String contents = gson.fromJson(bufferedReader.readLine(), Collection<type>);
-                String line;
+                String line = bufferedReader.readLine(); // skip [
                 while ((line = bufferedReader.readLine()) != null) {
-                    T entity = gson.fromJson(line, type);
+                    T entity;
+                    try {
+                        entity = gson.fromJson(line.substring(0, line.length() - 1), type);
+                    } catch (Exception ex) {
+                        entity = gson.fromJson(line, type);
+                    }
+
                     storage.put(entity.getId(), entity);
                 }
             }
@@ -56,10 +62,20 @@ public class FileRepository<T extends Entity> implements IRepository<T> {
             try (BufferedWriter bufferedWriter = new BufferedWriter(out)) {
 //                bufferedWriter.write(gson.toJson(storage.values()));
 
-                for (T entity : storage.values()) {
+                bufferedWriter.write('[');
+                bufferedWriter.newLine();
+                List<T> values = new ArrayList<>(storage.values());
+                for (int i = 0; i < values.size() - 1; ++i) {
+                    T entity = values.get(i);
                     bufferedWriter.write(gson.toJson(entity));
+                    bufferedWriter.write(',');
                     bufferedWriter.newLine();
                 }
+
+                T entity = values.get(values.size() - 1);
+                bufferedWriter.write(gson.toJson(entity));
+                bufferedWriter.newLine();
+                bufferedWriter.write(']');
             }
         } catch (Exception ex) {
 
